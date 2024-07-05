@@ -11,10 +11,14 @@ spring:
         url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:9998}/${DB_NAME:postgres}
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
-        jpa:
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
             hibernate:
-                ddl-auto: update
-            show-sql: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
 
 logging:
     level:
