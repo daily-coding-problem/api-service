@@ -2,6 +2,7 @@
 
 ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
 ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/-Spring-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
 
@@ -30,7 +31,7 @@ API Service a modular service that obtains LeetCode problems and study plans fro
 Before you begin, ensure you have met the following requirements:
 
 - Docker and Docker Compose installed on your machine.
-- Java 22 or higher installed on your machine.
+- Java 17 or higher installed on your machine.
 - Maven installed on your machine.
 - [PostgreSQL database](https://github.com/daily-coding-problem/database).
 
