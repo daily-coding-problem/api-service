@@ -1,4 +1,4 @@
-# API Service [![Python Tests](https://github.com/daily-coding-problem/leetcode-scraper/actions/workflows/python-pytests.yml/badge.svg)](https://github.com/daily-coding-problem/leetcode-scraper/actions/workflows/python-pytests.yml)
+# API Service
 
 ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
 ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
@@ -29,7 +29,7 @@ API Service a modular service that obtains LeetCode problems and study plans fro
 Before you begin, ensure you have met the following requirements:
 
 - Docker and Docker Compose installed on your machine.
-- Python 3.12 or higher.
+- Java 22 or higher installed on your machine.
 - [PostgreSQL database](https://github.com/daily-coding-problem/database).
 
 ## Installation
