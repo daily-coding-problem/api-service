@@ -5,9 +5,11 @@ import com.dcp.api_service.service.StudyPlanService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
@@ -19,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(StudyPlanController.class)
+@AutoConfigureMockMvc
 public class StudyPlanControllerTest {
 
 	@Autowired
@@ -35,6 +38,7 @@ public class StudyPlanControllerTest {
 	}
 
 	@Test
+	@WithMockUser
 	public void testGetAllStudyPlans() throws Exception {
 		when(studyPlanService.getAllStudyPlans()).thenReturn(Collections.singletonList(studyPlan));
 		mockMvc.perform(get("/api/study-plans")
@@ -45,6 +49,7 @@ public class StudyPlanControllerTest {
 	}
 
 	@Test
+	@WithMockUser
 	public void testGetStudyPlanBySlug() throws Exception {
 		when(studyPlanService.getStudyPlanBySlug("test-plan")).thenReturn(studyPlan);
 		mockMvc.perform(get("/api/study-plans/test-plan")
@@ -53,4 +58,3 @@ public class StudyPlanControllerTest {
 			.andExpect(jsonPath("$.name").value("Test Plan"));
 	}
 }
-
