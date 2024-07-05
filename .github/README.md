@@ -1,4 +1,4 @@
-# API Service
+# API Service [![Java CI with Maven](https://github.com/daily-coding-problem/api-service/actions/workflows/maven.yml/badge.svg)](https://github.com/daily-coding-problem/api-service/actions/workflows/maven.yml)
 
 ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=Docker&logoColor=white)
 ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
