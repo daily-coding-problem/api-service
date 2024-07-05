@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:22-jdk-slim as builder
+FROM openjdk:17-jdk-slim as builder
 
 # The name of the application's jar file
 ARG APP_NAME
@@ -20,7 +20,7 @@ COPY src src
 RUN mvn -ntp package -DskipTests
 
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:22-jdk-slim as layers
+FROM openjdk:17-jdk-slim as layers
 
 # Bring in the JAR file from the builder stage
 COPY --from=builder target/$APP_NAME.jar .
@@ -29,7 +29,7 @@ COPY --from=builder target/$APP_NAME.jar .
 RUN java -Djarmode=layertools -jar $APP_NAME.jar extract
 
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:22-jdk-slim as runtime
+FROM openjdk:17-jdk-slim as runtime
 
 # Brining in the extracted layers from the layers stage
 COPY --from=layers dependencies/ .
