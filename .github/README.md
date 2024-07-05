@@ -90,7 +90,7 @@ mvn spring-boot:run
 Run the tests with the following command:
 
 ```sh
-mvn test
+mvn test -Dspring.profiles.active=test
 ```
 
 ## Project Structure
