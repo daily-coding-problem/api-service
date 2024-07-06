@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "study_plan_problems")
+@Table(name = "study_plan_problems", schema = "leetcode")
 public class StudyPlanProblem {
 	@EmbeddedId
 	private StudyPlanProblemId id;
