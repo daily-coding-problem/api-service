@@ -22,9 +22,13 @@ public class Properties {
 
 	@Setter
 	public static class WebSecurity {
-		private String corsAllowedOrigins;
+		private String corsAllowedOrigins = "*";
 
 		public List<String> getCorsAllowedOrigins() {
+			if (corsAllowedOrigins == null || corsAllowedOrigins.isBlank()) {
+				return List.of("*");
+			}
+
 			return Arrays.asList(corsAllowedOrigins.split(","));
 		}
 	}
