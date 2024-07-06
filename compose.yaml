@@ -26,3 +26,34 @@ services:
         - .env
     networks:
         - dcp
+
+  # The below two services are for testing purposes only
+  # They are required to test the application in a CI environment
+
+  db:
+    image: postgres:latest
+    environment:
+        POSTGRES_DB: testdb
+        POSTGRES_USER: testuser
+        POSTGRES_PASSWORD: testpassword
+    ports:
+        - "5432:5432"
+    volumes:
+        - postgres_data:/var/lib/postgresql/data
+
+  github-action-maven-test:
+    build:
+        context: .
+        dockerfile: .github/workflows/Dockerfile
+    depends_on:
+        - db
+    environment:
+        - DB_HOST=db
+        - DB_PORT=5432
+        - DB_NAME=testdb
+        - DB_USERNAME=testuser
+        - DB_PASSWORD=testpassword
+    command: ["mvn", "test", "-Dspring.profiles.active=test"]
+
+volumes:
+    postgres_data:
