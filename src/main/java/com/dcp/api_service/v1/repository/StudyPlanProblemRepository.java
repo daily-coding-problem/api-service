@@ -1,7 +1,7 @@
-package com.dcp.api_service.repository;
+package com.dcp.api_service.v1.repository;
 
-import com.dcp.api_service.entity.StudyPlanProblem;
-import com.dcp.api_service.entity.StudyPlanProblemId;
+import com.dcp.api_service.v1.entity.StudyPlanProblem;
+import com.dcp.api_service.v1.entity.StudyPlanProblemId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

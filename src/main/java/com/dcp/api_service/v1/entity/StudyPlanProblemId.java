@@ -1,4 +1,4 @@
-package com.dcp.api_service.entity;
+package com.dcp.api_service.v1.entity;
 
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;

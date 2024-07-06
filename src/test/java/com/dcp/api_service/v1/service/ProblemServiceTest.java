@@ -1,7 +1,8 @@
-package com.dcp.api_service.service;
+package com.dcp.api_service.v1.service;
 
-import com.dcp.api_service.entity.Problem;
-import com.dcp.api_service.repository.ProblemRepository;
+import com.dcp.api_service.v1.entity.Problem;
+import com.dcp.api_service.v1.repository.ProblemRepository;
+import com.dcp.api_service.v1.service.ProblemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

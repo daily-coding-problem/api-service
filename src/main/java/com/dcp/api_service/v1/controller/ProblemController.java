@@ -1,14 +1,14 @@
-package com.dcp.api_service.controller;
+package com.dcp.api_service.v1.controller;
 
-import com.dcp.api_service.entity.Problem;
-import com.dcp.api_service.service.ProblemService;
+import com.dcp.api_service.v1.entity.Problem;
+import com.dcp.api_service.v1.service.ProblemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/problems")
+@RequestMapping("/api/v1/problems")
 public class ProblemController {
 
 	@Autowired

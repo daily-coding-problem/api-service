@@ -1,7 +1,7 @@
-package com.dcp.api_service.service;
+package com.dcp.api_service.v1.service;
 
-import com.dcp.api_service.entity.Problem;
-import com.dcp.api_service.repository.ProblemRepository;
+import com.dcp.api_service.v1.entity.Problem;
+import com.dcp.api_service.v1.repository.ProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

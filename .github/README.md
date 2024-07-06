@@ -109,21 +109,22 @@ api-service
 │   │   │       └── dcp
 │   │   │           └── api_service
 │   │   │               ├── ApiServiceApplication.java
-│   │   │               ├── controller
-│   │   │               │   ├── ProblemController.java
-│   │   │               │   └── StudyPlanController.java
-│   │   │               ├── entity
-│   │   │               │   ├── Problem.java
-│   │   │               │   ├── StudyPlan.java
-│   │   │               │   ├── StudyPlanProblem.java
-│   │   │               │   └── StudyPlanProblemId.java
-│   │   │               ├── repository
-│   │   │               │   ├── ProblemRepository.java
-│   │   │               │   ├── StudyPlanProblemRepository.java
-│   │   │               │   └── StudyPlanRepository.java
-│   │   │               └── service
-│   │   │                   ├── ProblemService.java
-│   │   │                   └── StudyPlanService.java
+│   │   │               └── v1
+│   │   │                   ├── controller
+│   │   │                   │   ├── ProblemController.java
+│   │   │                   │   └── StudyPlanController.java
+│   │   │                   ├── entity
+│   │   │                   │   ├── Problem.java
+│   │   │                   │   ├── StudyPlan.java
+│   │   │                   │   ├── StudyPlanProblem.java
+│   │   │                   │   └── StudyPlanProblemId.java
+│   │   │                   ├── repository
+│   │   │                   │   ├── ProblemRepository.java
+│   │   │                   │   ├── StudyPlanProblemRepository.java
+│   │   │                   │   └── StudyPlanRepository.java
+│   │   │                   └── service
+│   │   │                       ├── ProblemService.java
+│   │   │                       └── StudyPlanService.java
 │   │   └── resources
 │   │       ├── application.yml
 │   ├── test
@@ -131,13 +132,13 @@ api-service
 │   │   │   └── com
 │   │   │       └── dcp
 │   │   │           └── api_service
-│   │   │               ├── ApiServiceApplicationTests.java
-│   │   │               ├── controller
-│   │   │               │   ├── ProblemControllerTest.java
-│   │   │               │   └── StudyPlanControllerTest.java
-│   │   │               ├── service
-│   │   │               │   ├── ProblemServiceTest.java
-│   │   │               │   └── StudyPlanServiceTest.java
+│   │   │               └── v1
+│   │   │                   ├── controller
+│   │   │                   │   ├── ProblemControllerTest.java
+│   │   │                   │   └── StudyPlanControllerTest.java
+│   │   │                   ├── service
+│   │   │                   │   ├── ProblemServiceTest.java
+│   │   │                   │   └── StudyPlanServiceTest.java
 │   └── Dockerfile
 ├── .gitignore
 ├── pom.xml
@@ -150,35 +151,37 @@ api-service
 
 - **src/main/java**: Contains the main Java source files.
 	- **com.dcp.api_service**: The base package for the project.
-		- **ApiServiceApplication.java**: The entry point of the Spring Boot application.
-		- **controller**: Contains the REST controllers that handle HTTP requests.
-			- **ProblemController.java**: Manages requests related to problems.
-			- **StudyPlanController.java**: Manages requests related to study plans.
-		- **entity**: Contains the JPA entities that represent the database tables.
-			- **Problem.java**: Entity representing a problem.
-			- **StudyPlan.java**: Entity representing a study plan.
-			- **StudyPlanProblem.java**: Entity representing the relationship between study plans and problems.
-			- **StudyPlanProblemId.java**: Composite key for `StudyPlanProblem`.
-		- **repository**: Contains the Spring Data JPA repositories for database operations.
-			- **ProblemRepository.java**: Repository interface for problems.
-			- **StudyPlanProblemRepository.java**: Repository interface for study plan problems.
-			- **StudyPlanRepository.java**: Repository interface for study plans.
-		- **service**: Contains the service classes that contain business logic.
-			- **ProblemService.java**: Service class for managing problems.
-			- **StudyPlanService.java**: Service class for managing study plans.
+      - **v1**: Contains the version 1 of the API.
+          - **ApiServiceApplication.java**: The entry point of the Spring Boot application.
+          - **controller**: Contains the REST controllers that handle HTTP requests.
+              - **ProblemController.java**: Manages requests related to problems.
+              - **StudyPlanController.java**: Manages requests related to study plans.
+          - **entity**: Contains the JPA entities that represent the database tables.
+              - **Problem.java**: Entity representing a problem.
+              - **StudyPlan.java**: Entity representing a study plan.
+              - **StudyPlanProblem.java**: Entity representing the relationship between study plans and problems.
+              - **StudyPlanProblemId.java**: Composite key for `StudyPlanProblem`.
+          - **repository**: Contains the Spring Data JPA repositories for database operations.
+              - **ProblemRepository.java**: Repository interface for problems.
+              - **StudyPlanProblemRepository.java**: Repository interface for study plan problems.
+              - **StudyPlanRepository.java**: Repository interface for study plans.
+          - **service**: Contains the service classes that contain business logic.
+              - **ProblemService.java**: Service class for managing problems.
+              - **StudyPlanService.java**: Service class for managing study plans.
 
 - **src/main/resources**: Contains the application configuration and other resource files.
 	- **application.yml**: Configuration file for Spring Boot application.
 
 - **src/test/java**: Contains the test Java source files.
 	- **com.dcp.api_service**: The base test package for the project.
-		- **ApiServiceApplicationTests.java**: Test class to verify that the application context loads correctly.
-		- **controller**: Contains the test classes for REST controllers.
-			- **ProblemControllerTest.java**: Unit tests for `ProblemController`.
-			- **StudyPlanControllerTest.java**: Unit tests for `StudyPlanController`.
-		- **service**: Contains the test classes for service classes.
-			- **ProblemServiceTest.java**: Unit tests for `ProblemService`.
-			- **StudyPlanServiceTest.java**: Unit tests for `StudyPlanService`.
+      - **v1**: Contains the version 1 of the API.
+          - **ApiServiceApplicationTests.java**: Test class to verify that the application context loads correctly.
+          - **controller**: Contains the test classes for REST controllers.
+              - **ProblemControllerTest.java**: Unit tests for `ProblemController`.
+              - **StudyPlanControllerTest.java**: Unit tests for `StudyPlanController`.
+          - **service**: Contains the test classes for service classes.
+              - **ProblemServiceTest.java**: Unit tests for `ProblemService`.
+              - **StudyPlanServiceTest.java**: Unit tests for `StudyPlanService`.
 
 - **.github/README.md**: The README file for the GitHub repository.
 

@@ -1,7 +1,8 @@
-package com.dcp.api_service.service;
+package com.dcp.api_service.v1.service;
 
-import com.dcp.api_service.entity.StudyPlan;
-import com.dcp.api_service.repository.StudyPlanRepository;
+import com.dcp.api_service.v1.entity.StudyPlan;
+import com.dcp.api_service.v1.repository.StudyPlanRepository;
+import com.dcp.api_service.v1.service.StudyPlanService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

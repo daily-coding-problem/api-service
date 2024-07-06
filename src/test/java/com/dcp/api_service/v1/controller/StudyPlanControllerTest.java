@@ -1,7 +1,8 @@
-package com.dcp.api_service.controller;
+package com.dcp.api_service.v1.controller;
 
-import com.dcp.api_service.entity.StudyPlan;
-import com.dcp.api_service.service.StudyPlanService;
+import com.dcp.api_service.v1.controller.StudyPlanController;
+import com.dcp.api_service.v1.entity.StudyPlan;
+import com.dcp.api_service.v1.service.StudyPlanService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

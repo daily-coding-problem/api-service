@@ -1,7 +1,8 @@
-package com.dcp.api_service.controller;
+package com.dcp.api_service.v1.controller;
 
-import com.dcp.api_service.entity.Problem;
-import com.dcp.api_service.service.ProblemService;
+import com.dcp.api_service.v1.controller.ProblemController;
+import com.dcp.api_service.v1.entity.Problem;
+import com.dcp.api_service.v1.service.ProblemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
