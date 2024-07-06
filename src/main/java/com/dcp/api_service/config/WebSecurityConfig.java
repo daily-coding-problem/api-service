@@ -1,6 +1,6 @@
 package com.dcp.api_service.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.dcp.api_service.config.properties.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -12,7 +12,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,12 +19,11 @@ import java.util.List;
 public class WebSecurityConfig {
 
 	private final Environment env;
+	private final Properties.WebSecurity webSecurity;
 
-	@Value("${cors.allowed-origins}")
-	private String corsAllowedOrigins;
-
-	public WebSecurityConfig(Environment env) {
+	public WebSecurityConfig(Environment env, Properties properties) {
 		this.env = env;
+		this.webSecurity = properties.getWebSecurity();
 	}
 
 	@Bean
@@ -52,8 +50,8 @@ public class WebSecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList(corsAllowedOrigins.split(",")));
-		configuration.setAllowedMethods(List.of("GET", "POST", "DELETE"));
+		configuration.setAllowedOrigins(webSecurity.getCorsAllowedOrigins());
+		configuration.setAllowedMethods(List.of("POST"));
 		configuration.setAllowedHeaders(Collections.singletonList("*"));
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
