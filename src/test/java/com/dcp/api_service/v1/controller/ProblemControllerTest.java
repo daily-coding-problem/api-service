@@ -1,6 +1,5 @@
 package com.dcp.api_service.v1.controller;
 
-import com.dcp.api_service.v1.controller.ProblemController;
 import com.dcp.api_service.v1.entity.Problem;
 import com.dcp.api_service.v1.service.ProblemService;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +44,7 @@ public class ProblemControllerTest {
 	@WithMockUser
 	public void testGetAllProblems() throws Exception {
 		when(problemService.getAllProblems()).thenReturn(Collections.singletonList(problem));
-		mockMvc.perform(get("/api/problems")
+		mockMvc.perform(get("/api/v1/problems")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
@@ -56,7 +55,7 @@ public class ProblemControllerTest {
 	@WithMockUser
 	public void testGetProblemBySlug() throws Exception {
 		when(problemService.getProblemBySlug("test-problem")).thenReturn(problem);
-		mockMvc.perform(get("/api/problems/test-problem")
+		mockMvc.perform(get("/api/v1/problems/test-problem")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.title").value("Test Problem"));

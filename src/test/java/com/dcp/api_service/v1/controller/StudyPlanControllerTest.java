@@ -1,6 +1,5 @@
 package com.dcp.api_service.v1.controller;
 
-import com.dcp.api_service.v1.controller.StudyPlanController;
 import com.dcp.api_service.v1.entity.StudyPlan;
 import com.dcp.api_service.v1.service.StudyPlanService;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +41,7 @@ public class StudyPlanControllerTest {
 	@WithMockUser
 	public void testGetAllStudyPlans() throws Exception {
 		when(studyPlanService.getAllStudyPlans()).thenReturn(Collections.singletonList(studyPlan));
-		mockMvc.perform(get("/api/study-plans")
+		mockMvc.perform(get("/api/v1/study-plans")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
@@ -53,7 +52,7 @@ public class StudyPlanControllerTest {
 	@WithMockUser
 	public void testGetStudyPlanBySlug() throws Exception {
 		when(studyPlanService.getStudyPlanBySlug("test-plan")).thenReturn(studyPlan);
-		mockMvc.perform(get("/api/study-plans/test-plan")
+		mockMvc.perform(get("/api/v1/study-plans/test-plan")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.name").value("Test Plan"));
