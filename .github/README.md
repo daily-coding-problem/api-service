@@ -57,7 +57,7 @@ If you would like to use Docker, ensure Docker and Docker Compose are installed 
 **Build Docker Images**
 
 ```sh
-docker compose build
+docker compose build api-service
 ```
 
 **Create the Network**
@@ -77,7 +77,7 @@ Create a `.env` file in the project root with the content found in the [`.env.ex
 Start the service with Docker:
 
 ```sh
-docker compose up -d && docker compose logs -f api-service
+docker compose up -d api-service && docker compose logs -f api-service
 ```
 
 Or without Docker:
