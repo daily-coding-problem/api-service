@@ -50,6 +50,8 @@ jobs:
                   done
 
             - name: Create schema and initial setup
+              env:
+                  PGPASSWORD: ${{ secrets.DB_PASSWORD }}
               run: |
                   psql -h localhost -U ${{ secrets.DB_USERNAME }} -d ${{ env.DB_NAME }} -c "CREATE SCHEMA IF NOT EXISTS leetcode;"
 
