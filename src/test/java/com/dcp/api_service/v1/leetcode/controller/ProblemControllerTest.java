@@ -1,7 +1,7 @@
-package com.dcp.api_service.v1.controller;
+package com.dcp.api_service.v1.leetcode.controller;
 
-import com.dcp.api_service.v1.entity.StudyPlan;
-import com.dcp.api_service.v1.service.StudyPlanService;
+import com.dcp.api_service.v1.leetcode.entity.Problem;
+import com.dcp.api_service.v1.leetcode.service.ProblemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
@@ -20,41 +22,42 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(StudyPlanController.class)
+@WebMvcTest(ProblemController.class)
 @AutoConfigureMockMvc
-public class StudyPlanControllerTest {
+public class ProblemControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private StudyPlanService studyPlanService;
+	private ProblemService problemService;
 
-	private StudyPlan studyPlan;
+	private Problem problem;
 
 	@BeforeEach
 	public void setUp() {
-		studyPlan = new StudyPlan(1L, "test-plan", "Test Plan", "Test Description");
+		problem = new Problem(1L, 123, "Test Problem", "test-problem", "Test Content", "Easy",
+			Arrays.asList("Array", "String"), Arrays.asList("Company1", "Company2"), List.of("Hint1"), "https://test.link");
 	}
 
 	@Test
 	@WithMockUser
-	public void testGetAllStudyPlans() throws Exception {
-		when(studyPlanService.getAllStudyPlans()).thenReturn(Collections.singletonList(studyPlan));
-		mockMvc.perform(get("/api/v1/study-plans")
+	public void testGetAllProblems() throws Exception {
+		when(problemService.getAllProblems()).thenReturn(Collections.singletonList(problem));
+		mockMvc.perform(get("/api/v1/problems")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$", hasSize(1)))
-			.andExpect(jsonPath("$[0].name").value("Test Plan"));
+			.andExpect(jsonPath("$[0].title").value("Test Problem"));
 	}
 
 	@Test
 	@WithMockUser
-	public void testGetStudyPlanBySlug() throws Exception {
-		when(studyPlanService.getStudyPlanBySlug("test-plan")).thenReturn(studyPlan);
-		mockMvc.perform(get("/api/v1/study-plans/test-plan")
+	public void testGetProblemBySlug() throws Exception {
+		when(problemService.getProblemBySlug("test-problem")).thenReturn(problem);
+		mockMvc.perform(get("/api/v1/problems/test-problem")
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.name").value("Test Plan"));
+			.andExpect(jsonPath("$.title").value("Test Problem"));
 	}
 }

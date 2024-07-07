@@ -1,7 +1,7 @@
-package com.dcp.api_service.v1.service;
+package com.dcp.api_service.v1.leetcode.service;
 
-import com.dcp.api_service.v1.entity.StudyPlan;
-import com.dcp.api_service.v1.repository.StudyPlanRepository;
+import com.dcp.api_service.v1.leetcode.entity.StudyPlan;
+import com.dcp.api_service.v1.leetcode.repository.StudyPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,7 @@
-package com.dcp.api_service.v1.service;
+package com.dcp.api_service.v1.leetcode.service;
 
-import com.dcp.api_service.v1.entity.Problem;
-import com.dcp.api_service.v1.repository.ProblemRepository;
-import com.dcp.api_service.v1.service.ProblemService;
+import com.dcp.api_service.v1.leetcode.entity.Problem;
+import com.dcp.api_service.v1.leetcode.repository.ProblemRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

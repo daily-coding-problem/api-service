@@ -1,4 +1,4 @@
-package com.dcp.api_service.v1.entity;
+package com.dcp.api_service.v1.leetcode.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

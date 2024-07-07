@@ -1,7 +1,7 @@
-package com.dcp.api_service.v1.controller;
+package com.dcp.api_service.v1.leetcode.controller;
 
-import com.dcp.api_service.v1.entity.Problem;
-import com.dcp.api_service.v1.service.ProblemService;
+import com.dcp.api_service.v1.leetcode.entity.Problem;
+import com.dcp.api_service.v1.leetcode.service.ProblemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
