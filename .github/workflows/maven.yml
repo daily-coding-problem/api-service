@@ -37,6 +37,7 @@ jobs:
                   sudo apt-get install -y postgresql postgresql-contrib
                   sudo service postgresql start
                   sudo -u postgres psql -c "CREATE DATABASE ${DB_NAME};"
+                  sudo -u postgres psql -c "CREATE SCHEMA IF NOT EXISTS leetcode;"
                   sudo -u postgres psql -c "CREATE USER ${DB_USERNAME} WITH ENCRYPTED PASSWORD '${DB_PASSWORD}';"
                   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USERNAME};"
 
