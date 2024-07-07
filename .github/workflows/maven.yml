@@ -8,15 +8,29 @@ on:
 
 jobs:
     build:
-
         runs-on: ubuntu-latest
 
         env:
             DB_HOST: localhost
             DB_PORT: 5432
             DB_NAME: testdb
-            DB_USERNAME: testuser
-            DB_PASSWORD: testpassword
+            DB_USERNAME: ${{ secrets.DB_USERNAME }}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+        services:
+            postgres:
+                image: postgres:latest
+                env:
+                    POSTGRES_DB: ${{ env.DB_NAME }}
+                    POSTGRES_USER: ${{ secrets.DB_USERNAME }}
+                    POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+                ports:
+                    - 5432:5432
+                options: >-
+                    --health-cmd="pg_isready"
+                    --health-interval=10s
+                    --health-timeout=5s
+                    --health-retries=5
 
         steps:
             - name: Checkout code
@@ -28,20 +42,25 @@ jobs:
                   java-version: '17'
                   distribution: 'adopt'
 
-            - name: Install PostgreSQL client
-              run: sudo apt-get install -y postgresql-client
-
-            - name: Start PostgreSQL service
+            - name: Wait for PostgreSQL to be ready
               run: |
-                  sudo apt-get update
-                  sudo apt-get install -y postgresql postgresql-contrib
-                  sudo service postgresql start
-                  sudo -u postgres psql -c "CREATE DATABASE ${DB_NAME};"
-                  sudo -u postgres psql -c "CREATE USER ${DB_USERNAME} WITH ENCRYPTED PASSWORD '${DB_PASSWORD}';"
-                  sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USERNAME};"
+                  until pg_isready --host=localhost --port=5432 --username=${{ secrets.DB_USERNAME }}; do
+                    echo "Waiting for PostgreSQL to be ready..."
+                    sleep 5
+                  done
+
+            - name: Create schema and initial setup
+              run: |
+                  psql -h localhost -U ${{ secrets.DB_USERNAME }} -d ${{ env.DB_NAME }} -c "CREATE SCHEMA IF NOT EXISTS leetcode;"
 
             - name: Build with Maven
               run: mvn clean install -DskipTests
 
             - name: Run tests
               run: mvn test -Dspring.profiles.active=test
+              env:
+                  DB_HOST: localhost
+                  DB_PORT: 5432
+                  DB_NAME: testdb
+                  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+                  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}

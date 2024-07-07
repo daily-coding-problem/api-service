@@ -34,12 +34,15 @@ services:
     image: postgres:latest
     environment:
         POSTGRES_DB: testdb
-        POSTGRES_USER: testuser
-        POSTGRES_PASSWORD: testpassword
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
         - "5432:5432"
     volumes:
         - postgres_data:/var/lib/postgresql/data
+        - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+        - .env
 
   github-action-maven-test:
     build:
@@ -51,8 +54,10 @@ services:
         - DB_HOST=db
         - DB_PORT=5432
         - DB_NAME=testdb
-        - DB_USERNAME=testuser
-        - DB_PASSWORD=testpassword
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+    env_file:
+        - .env
     command: ["mvn", "test", "-Dspring.profiles.active=test"]
 
 volumes:

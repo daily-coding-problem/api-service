@@ -4,6 +4,12 @@ FROM maven:3.8.5-openjdk-17-slim
 # Set the working directory inside the container
 WORKDIR /app
 
+# Copy the pom.xml file to the working directory
+COPY pom.xml .
+
+# Cache dependencies by running dependency:go-offline
+RUN mvn -ntp dependency:go-offline
+
 # Copy the project files to the working directory
 COPY . .
 
