@@ -24,4 +24,8 @@ public class ProblemService {
 	public Problem saveProblem(Problem problem) {
 		return problemRepository.save(problem);
 	}
+
+	public Problem getRandomProblem() {
+		return problemRepository.findRandomProblem();
+	}
 }

@@ -60,4 +60,14 @@ public class ProblemControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.title").value("Test Problem"));
 	}
+
+	@Test
+	@WithMockUser
+	public void testGetRandomProblem() throws Exception {
+		when(problemService.getRandomProblem()).thenReturn(problem);
+		mockMvc.perform(get("/api/v1/problems/random")
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.title").exists());
+	}
 }

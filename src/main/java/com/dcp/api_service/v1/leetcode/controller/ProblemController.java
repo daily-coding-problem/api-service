@@ -28,4 +28,9 @@ public class ProblemController {
 	public Problem createProblem(@RequestBody Problem problem) {
 		return problemService.saveProblem(problem);
 	}
+
+	@GetMapping("/random")
+	public Problem getRandomProblem() {
+		return problemService.getRandomProblem();
+	}
 }

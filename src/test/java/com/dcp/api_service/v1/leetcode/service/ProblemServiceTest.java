@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class ProblemServiceTest {
@@ -54,6 +55,14 @@ public class ProblemServiceTest {
 		Problem savedProblem = problemService.saveProblem(problem);
 		assertEquals("Test Problem", savedProblem.getTitle());
 		verify(problemRepository, times(1)).save(problem);
+	}
+
+	@Test
+	public void testGetRandomProblem() {
+		when(problemRepository.findRandomProblem()).thenReturn(problem);
+		Problem randomProblem = problemService.getRandomProblem();
+		assertFalse(randomProblem.getTitle().isEmpty());
+		verify(problemRepository, times(1)).findRandomProblem();
 	}
 }
 
