@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.leetcode.controller;
 
-import com.dcp.api_service.v1.leetcode.entity.Problem;
+import com.dcp.api_service.v1.leetcode.entities.Problem;
 import com.dcp.api_service.v1.leetcode.service.ProblemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

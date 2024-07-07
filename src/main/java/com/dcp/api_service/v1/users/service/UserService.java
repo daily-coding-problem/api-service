@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.users.service;
 
-import com.dcp.api_service.v1.users.entity.User;
+import com.dcp.api_service.v1.users.entities.User;
 import com.dcp.api_service.v1.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

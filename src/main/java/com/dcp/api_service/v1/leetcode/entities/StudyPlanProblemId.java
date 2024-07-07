@@ -1,4 +1,4 @@
-package com.dcp.api_service.v1.leetcode.entity;
+package com.dcp.api_service.v1.leetcode.entities;
 
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;

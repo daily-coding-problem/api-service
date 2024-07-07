@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.leetcode.service;
 
-import com.dcp.api_service.v1.leetcode.entity.StudyPlan;
+import com.dcp.api_service.v1.leetcode.entities.StudyPlan;
 import com.dcp.api_service.v1.leetcode.repository.StudyPlanRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

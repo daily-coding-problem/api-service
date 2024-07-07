@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.leetcode.repository;
 
-import com.dcp.api_service.v1.leetcode.entity.StudyPlan;
+import com.dcp.api_service.v1.leetcode.entities.StudyPlan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

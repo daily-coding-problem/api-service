@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.leetcode.controller;
 
-import com.dcp.api_service.v1.leetcode.entity.StudyPlan;
+import com.dcp.api_service.v1.leetcode.entities.StudyPlan;
 import com.dcp.api_service.v1.leetcode.service.StudyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.users.controller;
 
-import com.dcp.api_service.v1.users.entity.User;
+import com.dcp.api_service.v1.users.entities.User;
 import com.dcp.api_service.v1.users.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.dcp.api_service.v1.users.repository;
 
-import com.dcp.api_service.v1.users.entity.User;
+import com.dcp.api_service.v1.users.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,28 +1,22 @@
-package com.dcp.api_service.v1.users.entity;
+package com.dcp.api_service.v1.leetcode.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import java.sql.Timestamp;
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "study_plans", schema = "leetcode")
+public class StudyPlan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique = true)
-	private String email;
-
-	private boolean isPremium;
-
-	private String timezone;
-
-	private Timestamp createdAt;
+	private String slug;
+	private String name;
+	private String description;
 }
