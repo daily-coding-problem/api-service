@@ -1,6 +1,11 @@
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-jdk-slim as builder
 
+# Install Maven
+RUN apt-get update && \
+    apt-get install -y maven && \
+    rm -rf /var/lib/apt/lists/*
+
 # The name of the application's jar file
 ARG APP_NAME
 
@@ -21,6 +26,9 @@ RUN mvn -ntp package -DskipTests
 
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-jdk-slim as layers
+
+# The name of the application's jar file
+ARG APP_NAME
 
 # Bring in the JAR file from the builder stage
 COPY --from=builder target/$APP_NAME.jar .
