@@ -1,5 +1,5 @@
 # Use the official Maven image to build the project
-FROM maven:3.8.5-openjdk-17-slim
+FROM maven:3.9.8-sapmachine-22
 
 # Set the working directory inside the container
 WORKDIR /app

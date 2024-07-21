@@ -30,7 +30,7 @@ API Service a modular service that obtains LeetCode problems and study plans fro
 Before you begin, ensure you have met the following requirements:
 
 - Docker and Docker Compose installed on your machine.
-- Java 17 or higher installed on your machine.
+- Java 22 or higher installed on your machine.
 - Maven installed on your machine.
 - [PostgreSQL database](https://github.com/daily-coding-problem/database).
 

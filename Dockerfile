@@ -1,10 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim as builder
-
-# Install Maven
-RUN apt-get update && \
-    apt-get install -y maven && \
-    rm -rf /var/lib/apt/lists/*
+FROM maven:3.9.8-sapmachine-22 as builder
 
 # The name of the application's jar file
 ARG APP_NAME
@@ -25,7 +20,7 @@ COPY src src
 RUN mvn -ntp package -DskipTests
 
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim as layers
+FROM openjdk:22-jdk-slim as layers
 
 # The name of the application's jar file
 ARG APP_NAME
@@ -37,7 +32,7 @@ COPY --from=builder target/$APP_NAME.jar .
 RUN java -Djarmode=layertools -jar $APP_NAME.jar extract
 
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim as runtime
+FROM openjdk:22-jdk-slim as runtime
 
 # Brining in the extracted layers from the layers stage
 COPY --from=layers dependencies/ .
