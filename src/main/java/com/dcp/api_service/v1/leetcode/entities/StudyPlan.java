@@ -19,4 +19,5 @@ public class StudyPlan {
 	private String slug;
 	private String name;
 	private String description;
+	private Integer expectedNumberOfProblems;
 }

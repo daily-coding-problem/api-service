@@ -27,7 +27,7 @@ public class StudyPlanServiceTest {
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		studyPlan = new StudyPlan(1L, "test-plan", "Test Plan", "Test Description");
+		studyPlan = new StudyPlan(1L, "test-plan", "Test Plan", "Test Description", 10);
 	}
 
 	@Test
