@@ -26,7 +26,7 @@ FROM openjdk:22-jdk-slim as layers
 ARG APP_NAME
 
 # Bring in the JAR file from the builder stage
-COPY --from=builder target/$APP_NAME.jar .
+COPY --from=builder /app/target/$APP_NAME.jar .
 
 # Extract the layers
 RUN java -Djarmode=layertools -jar $APP_NAME.jar extract
@@ -41,4 +41,4 @@ COPY --from=layers spring-boot-loader/ .
 COPY --from=layers application/ .
 
 # Run the extracted layers
-CMD ["java", "org.springframework.boot.loader.JarLauncher"]
+CMD ["java", "org.springframework.boot.loader.launch.JarLauncher"]

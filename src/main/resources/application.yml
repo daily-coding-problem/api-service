@@ -19,6 +19,11 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    use_streams_for_binary: false
+                    wrap_result_sets: false
+                cache:
+                    use_query_cache: false
 
 logging:
     level:

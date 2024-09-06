@@ -1,7 +1,9 @@
 package com.dcp.api_service.v1.users.controller;
 
 import com.dcp.api_service.v1.users.entities.User;
+import com.dcp.api_service.v1.users.exceptions.UserNotFoundException;
 import com.dcp.api_service.v1.users.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,22 +18,34 @@ public class UserController {
 	}
 
 	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.getAllUsers();
+	public ResponseEntity<?> getAllUsers() {
+		List<User> users = userService.getAllUsers();
+
+		return ResponseEntity.ok(users);
 	}
 
 	@GetMapping("/premium")
-	public List<User> getAllPremiumUsers() {
-		return userService.getAllPremiumUsers();
+	public ResponseEntity<?> getAllPremiumUsers() {
+		List<User> users = userService.getAllPremiumUsers();
+
+		return ResponseEntity.ok(users);
 	}
 
 	@GetMapping("/{email}")
-	public User getUserByEmail(@PathVariable(name = "email") String email) {
-		return userService.getUserByEmail(email);
+	public ResponseEntity<?> getUserByEmail(@PathVariable(name = "email") String email) {
+		User user = userService.getUserByEmail(email);
+
+		if (user == null) {
+			throw new UserNotFoundException("User with email '" + email + "' not found.");
+		}
+
+		return ResponseEntity.ok(user);
 	}
 
 	@PostMapping
-	public User createUser(User user) {
-		return userService.saveUser(user);
+	public ResponseEntity<?> createUser(User user) {
+		User savedUser = userService.saveUser(user);
+
+		return ResponseEntity.ok(savedUser);
 	}
 }

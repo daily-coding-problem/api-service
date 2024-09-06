@@ -34,4 +34,6 @@ public class Problem {
 	private List<String> hints;
 
 	private String link;
+
+	private String solution;
 }

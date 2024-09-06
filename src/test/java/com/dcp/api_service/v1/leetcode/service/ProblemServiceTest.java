@@ -30,7 +30,7 @@ public class ProblemServiceTest {
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
 		problem = new Problem(1L, 123, "Test Problem", "test-problem", "Test Content", "Easy",
-			Arrays.asList("Array", "String"), Arrays.asList("Company1", "Company2"), List.of("Hint1"), "https://test.link");
+			Arrays.asList("Array", "String"), Arrays.asList("Company1", "Company2"), List.of("Hint1"), "https://test.link", null);
 	}
 
 	@Test

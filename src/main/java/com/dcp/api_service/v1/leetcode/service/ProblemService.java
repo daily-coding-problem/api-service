@@ -28,4 +28,23 @@ public class ProblemService {
 	public Problem getRandomProblem() {
 		return problemRepository.findRandomProblem();
 	}
+
+	public Problem updateProblem(String slug, Problem problem) {
+		Problem existingProblem = problemRepository.findBySlug(slug);
+
+		if (existingProblem == null) {
+			return null;
+		}
+
+		existingProblem.setTitle(problem.getTitle());
+		existingProblem.setContent(problem.getContent());
+		existingProblem.setDifficulty(problem.getDifficulty());
+		existingProblem.setTopics(problem.getTopics());
+		existingProblem.setCompanies(problem.getCompanies());
+		existingProblem.setHints(problem.getHints());
+		existingProblem.setLink(problem.getLink());
+		existingProblem.setSolution(problem.getSolution());
+
+		return problemRepository.save(existingProblem);
+	}
 }

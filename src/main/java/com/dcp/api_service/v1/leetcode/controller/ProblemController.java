@@ -1,8 +1,11 @@
 package com.dcp.api_service.v1.leetcode.controller;
 
 import com.dcp.api_service.v1.leetcode.entities.Problem;
+import com.dcp.api_service.v1.leetcode.exceptions.ProblemNotFoundException;
 import com.dcp.api_service.v1.leetcode.service.ProblemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,26 +14,56 @@ import java.util.List;
 @RequestMapping("/api/v1/problems")
 public class ProblemController {
 
-	@Autowired
-	private ProblemService problemService;
+	private final ProblemService problemService;
+
+	public ProblemController(ProblemService problemService) {
+		this.problemService = problemService;
+	}
 
 	@GetMapping
-	public List<Problem> getAllProblems() {
-		return problemService.getAllProblems();
+	public ResponseEntity<?> getAllProblems() {
+		List<Problem> problems = problemService.getAllProblems();
+
+		return ResponseEntity.ok(problems);
 	}
 
 	@GetMapping("/{slug}")
-	public Problem getProblemBySlug(@PathVariable String slug) {
-		return problemService.getProblemBySlug(slug);
+	public ResponseEntity<?> getProblemBySlug(@PathVariable String slug) {
+		Problem problem = problemService.getProblemBySlug(slug);
+
+		if (problem == null) {
+			throw new ProblemNotFoundException("Problem with slug '" + slug + "' not found.");
+		}
+
+		return ResponseEntity.ok(problem);
 	}
 
 	@PostMapping
-	public Problem createProblem(@RequestBody Problem problem) {
-		return problemService.saveProblem(problem);
+	public ResponseEntity<?> createProblem(@RequestBody @Validated Problem problem) {
+		Problem savedProblem = problemService.saveProblem(problem);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(savedProblem);
 	}
 
 	@GetMapping("/random")
-	public Problem getRandomProblem() {
-		return problemService.getRandomProblem();
+	public ResponseEntity<?> getRandomProblem() {
+		Problem problem = problemService.getRandomProblem();
+
+		if (problem == null) {
+			throw new ProblemNotFoundException("Random problem not found.");
+		}
+
+		return ResponseEntity.ok(problem);
+	}
+
+	@PutMapping("/{slug}")
+	public ResponseEntity<?> updateProblem(@PathVariable String slug, @RequestBody @Validated Problem problem) {
+		Problem updatedProblem = problemService.updateProblem(slug, problem);
+
+		if (updatedProblem == null) {
+			throw new ProblemNotFoundException("Problem with slug '" + slug + "' not found.");
+		}
+
+		return ResponseEntity.ok(updatedProblem);
 	}
 }

@@ -1,8 +1,10 @@
 package com.dcp.api_service.v1.leetcode.controller;
 
 import com.dcp.api_service.v1.leetcode.entities.StudyPlan;
+import com.dcp.api_service.v1.leetcode.exceptions.StudyPlanNotFoundException;
 import com.dcp.api_service.v1.leetcode.service.StudyPlanService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,21 +13,33 @@ import java.util.List;
 @RequestMapping("/api/v1/study-plans")
 public class StudyPlanController {
 
-	@Autowired
-	private StudyPlanService studyPlanService;
+	private final StudyPlanService studyPlanService;
+
+	public StudyPlanController(StudyPlanService studyPlanService) {
+		this.studyPlanService = studyPlanService;
+	}
 
 	@GetMapping
-	public List<StudyPlan> getAllStudyPlans() {
-		return studyPlanService.getAllStudyPlans();
+	public ResponseEntity<?> getAllStudyPlans() {
+		List<StudyPlan> studyPlans = studyPlanService.getAllStudyPlans();
+		return ResponseEntity.ok(studyPlans);
 	}
 
 	@GetMapping("/{slug}")
-	public StudyPlan getStudyPlanBySlug(@PathVariable String slug) {
-		return studyPlanService.getStudyPlanBySlug(slug);
+	public ResponseEntity<?> getStudyPlanBySlug(@PathVariable String slug) {
+		StudyPlan studyPlan = studyPlanService.getStudyPlanBySlug(slug);
+
+		if (studyPlan == null) {
+			throw new StudyPlanNotFoundException("Study plan with slug '" + slug + "' not found.");
+		}
+
+		return ResponseEntity.ok(studyPlan);
 	}
 
 	@PostMapping
-	public StudyPlan createStudyPlan(@RequestBody StudyPlan studyPlan) {
-		return studyPlanService.saveStudyPlan(studyPlan);
+	public ResponseEntity<?> createStudyPlan(@RequestBody @Validated StudyPlan studyPlan) {
+		StudyPlan savedStudyPlan = studyPlanService.saveStudyPlan(studyPlan);
+
+		return ResponseEntity.ok(savedStudyPlan);
 	}
 }
