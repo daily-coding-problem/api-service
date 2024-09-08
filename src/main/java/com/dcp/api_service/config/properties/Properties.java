@@ -1,5 +1,6 @@
 package com.dcp.api_service.config.properties;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,9 +16,22 @@ import java.util.List;
 @Validated
 public class Properties {
 	private final WebSecurity webSecurity;
+	private final Services services = new Services();
 
 	public Properties() {
 		this.webSecurity = new WebSecurity();
+	}
+
+	@Data
+	@Validated
+	public static class Services {
+		private final Mail mail = new Mail();
+
+		@Data
+		@Validated
+		public static class Mail {
+			private String url;
+		}
 	}
 
 	@Setter

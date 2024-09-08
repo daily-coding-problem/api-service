@@ -25,6 +25,9 @@ API Service a modular service that obtains LeetCode problems and study plans fro
 - **Docker Support**: Can be run in a Docker container.
 - **Logging**: Logs information to the console.
 - **Testing**: Includes unit tests for the service.
+- **GitHub Actions**: Includes a workflow to test the service.
+- **GDPR Compliance**: Ensures data protection and privacy for all individuals.
+- **Security**: Protects against security threats and vulnerabilities.
 
 ## Prerequisites
 

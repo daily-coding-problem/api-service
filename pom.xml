@@ -53,6 +53,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- Redis for distributed locking -->
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>3.16.4</version>
+		</dependency>
 		<!-- Spring Boot Test Dependencies -->
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
@@ -85,6 +91,16 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cronutils</groupId>
+			<artifactId>cron-utils</artifactId>
+			<version>9.2.0</version>
 		</dependency>
 	</dependencies>
 
