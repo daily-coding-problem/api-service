@@ -49,12 +49,12 @@ jobs:
                     sleep 5
                   done
 
-            - name: Create schema and initial setup
-              env:
-                  PGPASSWORD: ${{ secrets.DB_PASSWORD }}
-              run: |
-                  psql -h localhost -U ${{ secrets.DB_USERNAME }} -d ${{ env.DB_NAME }} -c "CREATE SCHEMA IF NOT EXISTS leetcode;"
-
+            -   name: Create schema and initial setup
+                env:
+                    PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+                run: |
+                    echo "Running schema.sql to initialize the database..."
+                    psql -h ${{ env.DB_HOST }} -U ${{ secrets.DB_USERNAME }} -d ${{ env.DB_NAME }} -f src/main/resources/schema.sql
             - name: Build with Maven
               run: mvn clean install -DskipTests
 
