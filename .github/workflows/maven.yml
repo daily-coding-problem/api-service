@@ -55,6 +55,7 @@ jobs:
                 run: |
                     echo "Running schema.sql to initialize the database..."
                     psql -h ${{ env.DB_HOST }} -U ${{ secrets.DB_USERNAME }} -d ${{ env.DB_NAME }} -f src/main/resources/schema.sql
+
             - name: Build with Maven
               run: mvn clean install -DskipTests
 

@@ -53,12 +53,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!-- Redis for distributed locking -->
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>3.16.4</version>
-		</dependency>
 		<!-- Spring Boot Test Dependencies -->
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
