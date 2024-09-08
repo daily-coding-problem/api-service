@@ -19,16 +19,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
-public class ProblemService {
+public class UserProblemService {
 	private final UserSeenProblemsRepository userSeenProblemsRepository;
 	private final StudyPlanProblemRepository studyPlanProblemRepository;
 	private final UserStudyPlanRepository userStudyPlanRepository;
 
 	private final EmailService emailService;
 
-	private static final Logger logger = LoggerFactory.getLogger(ProblemService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserProblemService.class);
 
-	public ProblemService(UserSeenProblemsRepository userSeenProblemsRepository, StudyPlanProblemRepository studyPlanProblemRepository,
+	public UserProblemService(UserSeenProblemsRepository userSeenProblemsRepository, StudyPlanProblemRepository studyPlanProblemRepository,
 	                      UserStudyPlanRepository userStudyPlanRepository, EmailService emailService) {
 		this.userSeenProblemsRepository = userSeenProblemsRepository;
 		this.studyPlanProblemRepository = studyPlanProblemRepository;

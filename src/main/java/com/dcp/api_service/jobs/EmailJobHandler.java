@@ -1,7 +1,7 @@
 package com.dcp.api_service.jobs;
 
 import com.dcp.api_service.service.BatchProcessingService;
-import com.dcp.api_service.service.ProblemService;
+import com.dcp.api_service.service.UserProblemService;
 import com.dcp.api_service.v1.users.service.UserService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
@@ -16,15 +16,15 @@ import com.dcp.api_service.v1.jobs.service.CronJobService;
 public class EmailJobHandler implements JobHandler {
 
 	private final UserService userService;
-	private final ProblemService problemService;
+	private final UserProblemService userProblemService;
 	private final CronJobService cronJobService;
 	private final BatchProcessingService batchProcessingService;
 
 	private static final Logger logger = LoggerFactory.getLogger(EmailJobHandler.class);
 
-	public EmailJobHandler(UserService userService, ProblemService problemService, CronJobService cronJobService, BatchProcessingService batchProcessingService) {
+	public EmailJobHandler(UserService userService, UserProblemService userProblemService, CronJobService cronJobService, BatchProcessingService batchProcessingService) {
 		this.userService = userService;
-		this.problemService = problemService;
+		this.userProblemService = userProblemService;
 		this.cronJobService = cronJobService;
 		this.batchProcessingService = batchProcessingService;
 	}
@@ -66,7 +66,7 @@ public class EmailJobHandler implements JobHandler {
 				// Process the current batch using the batch processing service with multithreading
 				batchProcessingService.processBatch(userPage, user -> {
 					logger.info("Processing daily coding problem for user: {}", user.getEmail());
-					problemService.processUserProblem(user);  // Send daily coding problem email
+					userProblemService.processUserProblem(user);  // Send daily coding problem email
 				});
 
 				if (!userPage.hasNext()) break;
