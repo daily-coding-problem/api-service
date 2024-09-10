@@ -119,14 +119,14 @@ CREATE TABLE cron_jobs
 	next_run_at TIMESTAMP
 );
 
-INSERT INTO cron_jobs (name, description, schedule, last_run_at, next_run_at)
-VALUES ('Send Daily Coding Problems', 'Send daily coding problem to all subscribed users', '0 0 0 * * ?', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO cron_jobs (name, description, schedule, enabled, last_run_at, next_run_at)
+VALUES ('Send Daily Coding Problems', 'Send daily coding problem to all subscribed users', '0 0 0 * * ?', false,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO cron_jobs (name, description, schedule, last_run_at, next_run_at)
-VALUES ('Handle Expired Tokens', 'Handle expired unsubscribe tokens', '0 0 0 * * ?', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO cron_jobs (name, description, schedule, enabled, last_run_at, next_run_at)
+VALUES ('Handle Expired Tokens', 'Handle expired unsubscribe tokens', '0 0 0 * * ?', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO cron_jobs (name, description, schedule, last_run_at, next_run_at)
-VALUES ('Anonymize User Data Clean Up', 'Clean up anonymized user data after a given retention period', '0 0 0 * * ?', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO cron_jobs (name, description, schedule, enabled, last_run_at, next_run_at)
+VALUES ('Anonymize User Data Clean Up', 'Clean up anonymized user data after a given retention period', '0 0 0 * * ?', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Indexes for faster lookups on frequently queried columns
 CREATE INDEX idx_problems_question_id ON leetcode.problems (question_id);
